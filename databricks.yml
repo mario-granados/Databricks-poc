@@ -1,0 +1,26 @@
+%md
+bundle:
+  name: databricks-poc
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: <your-dev-workspace-url>
+
+  qa:
+    workspace:
+      host: <your-qa-workspace-url>
+      root_path: /Shared/.bundle/qa/${bundle.name}
+
+  prod:
+    mode: production
+    workspace:
+      host: <your-prod-workspace-url>
+      root_path: /Shared/.bundle/prod/${bundle.name}
+    run_as:
+      service_principal_name: <your-service-principal>
